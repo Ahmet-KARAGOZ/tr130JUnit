@@ -32,5 +32,6 @@ public class C07_AssertionMethodlari {
 		String actualURL = driver.getCurrentUrl();
 
 		Assert.assertEquals(expectedURL,actualURL);
+		//Sıralama Önnemli
 	}
 }
