@@ -1,4 +1,4 @@
-package day05_annotations_assertions;
+package tests.day05_annotations_assertions;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Ignore;
