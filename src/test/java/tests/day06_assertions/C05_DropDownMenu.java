@@ -1,10 +1,14 @@
 package tests.day06_assertions;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import utilities.ReusableMethods;
 import utilities.TestBase;
+
+import java.util.List;
 
 public class C05_DropDownMenu extends TestBase {
 	/*
@@ -41,6 +45,14 @@ public class C05_DropDownMenu extends TestBase {
 		System.out.println(selectAy.getFirstSelectedOption().getText());
 		System.out.println(selectYil.getFirstSelectedOption().getText());
 
-	Thread.sleep(3000);
+		List<WebElement> opsiyonElementleriList = selectAy.getOptions();
+		System.out.println(ReusableMethods.stringListeCevir(opsiyonElementleriList));
+
+		Assert.assertTrue(ReusableMethods.stringListeCevir(opsiyonElementleriList).contains("Mart"));
+
+		Assert.assertEquals(opsiyonElementleriList.size(), 13);
+		ReusableMethods.bekle(5);
+
+
 	}
 }
