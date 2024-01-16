@@ -4,7 +4,10 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import utilities.ReusableMethods;
 import utilities.TestBase;
+
+import java.util.Set;
 /*
 1- https://testotomasyonu.com/discount adresine gidin
 2- Elektronics Products yazisinin gorunur olduğunu test edin
@@ -34,6 +37,31 @@ public class C03_KontrolsuzAcilanWindowaGecis extends TestBase {
 		String ilkWindowWHD = driver.getWindowHandle();
 
 		delElementi.click();
+
+		Set<String> whDegerleriSeti = driver.getWindowHandles();
+		System.out.println("ilkWindowWHD = " + ilkWindowWHD);
+		System.out.println("whDegerleriSeti = " + whDegerleriSeti);
+		String ikinciWindowWHD="";
+
+		for (String each : whDegerleriSeti){
+			if (!each.equals(ilkWindowWHD)){
+				ikinciWindowWHD = each;
+			}
+		}
+
+		driver.switchTo().window(ikinciWindowWHD);
+		WebElement fiyatElementi = driver.findElement(By.id("priceproduct"));
+		String expFiyat = "$399.00";
+		String actFiyat = fiyatElementi.getText();
+
+		Assert.assertEquals(expFiyat,actFiyat);
+		driver.switchTo().window(ilkWindowWHD);
+
+		ReusableMethods.bekle(2);
+
+		WebElement hereAreYaziElementi = driver.findElement(By.xpath("//*[text()='Here are some products.']"));
+		Assert.assertTrue(hereAreYaziElementi.isDisplayed());
+
 
 
 
