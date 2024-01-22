@@ -51,9 +51,34 @@ public class C02_NonKlasikKodlarlaWebTables extends TestBase {
 		List<WebElement> ucuncuSutunelementleri = driver.findElements(By.xpath("(//*[@role='trow'])/ *[@role='tdata'][3]"));
 		System.out.println("Üçüncu sütün elementleri : "+ ReusableMethods.stringListeCevir(ucuncuSutunelementleri));
 
+		// (//*[@role='trow'])[   5  ]/ *[@role='tdata'][2]    category
+		// (//*[@role='trow'])[   5  ]/ *[@role='tdata'][3]    fiyat
+
+		for (int i = 1; i <= tumSatirlarElementi.size() ; i++) {
+			String dinamikCategoryXpath =  "(//*[@role='trow'])[   "+i+"  ]/ *[@role='tdata'][2]  ";
+			String dinamikFiyatXpath = "(//*[@role='trow'])[   "+i+"  ]/ *[@role='tdata'][3]";
+
+			WebElement satirdakiCategoryElementi = driver.findElement(By.xpath(dinamikCategoryXpath));
+			WebElement sutundakiFiyatElementi = driver.findElement(By.xpath(dinamikFiyatXpath));
+
+			if (satirdakiCategoryElementi.getText().equals("Furniture")){
+				System.out.println(sutundakiFiyatElementi.getText());
+			}
+		}
+
+		datayiYazdir(3,3);
+		datayiYazdir(2,2);
 
 
 
 
+
+
+	}
+	//  (//*[@role='trow'])[   5  ]/ *[@role='tdata'][   2    ]
+	public  void datayiYazdir(int satirNO, int sutunNo){
+		String dinamikXpath = "(//*[@role='trow'])[   "+satirNO+"  ]/ *[@role='tdata'][   "+sutunNo+"    ] ";
+		WebElement istenenElement = driver.findElement(By.xpath(dinamikXpath));
+		System.out.println("İstenen Hücredeki Data : "+istenenElement.getText());
 	}
 }
