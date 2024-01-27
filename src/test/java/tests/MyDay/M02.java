@@ -33,6 +33,7 @@ public class M02  {
 		Actions actions = new Actions(driver);
 		actions.click(aramaKutusu);
 
+
 		aramaKutusu.sendKeys("38°18'22\"N 27°09'02\"E" + Keys.ENTER);
 		ReusableMethods.bekle(5);
 		aramaKutusu.clear();
